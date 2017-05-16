@@ -1,42 +1,22 @@
-<table border="1">
-	<tr>
-	  <td>Nimi</td>
-	  <td><input type="text" name="name" /></td>
-	</tr>
-	<tr>
-	  <td>Telefon</td>
-	  <td><input type="tel" name="phone" /></td>
-	</tr>
-	<tr>
-	  <td>Saun</td>
-	  <td>
-	    <select name="saun">
-		<option value="1">Soome saun</option>
-		<option value="2">Vene saun</option>
-		<option value="3">Türgi saun</option>
-		<option value="4">Suitsusaun</option>
-		<option value="5">Aurusaun</option>
-		<option value="6">Aroomisaun</option>
-	    </select>
-	  </td>
-	</tr>
-	<tr>
-	  <td>Eelarve</td>
-	  <td><input type="number" name="price" min="0" step="50"/></td>
-	</tr>
-	<tr>
-	  <td>Lisainfo</td>
-	  <td></td>
-	</tr>
-	<tr>
-	  <td colspan="2">
-		<textarea name="description" rows="10" cols="50"></textarea>
-	  </td>
-	<tr>
-	  <td>Eskiis</td>
-	  <td><input type="file" name="big" /></td>
-	</tr>			
-	<tr>
-	  <td><input type="submit" value="Saada" name="button" /></td>
-	</tr>
-</table> 
+<form action="regvorm.html" method="POST">
+Nimi
+<input type="text" name="name" /><br/>
+Telefon
+<input type="tel" name="phone" /><br/>
+Saun    
+<select name="saun">
+	<option value="1">Soome saun</option>
+	<option value="2">Vene saun</option>
+	<option value="3">Türgi saun</option>
+	<option value="4">Suitsusaun</option>
+	<option value="5">Aurusaun</option>
+	<option value="6">Aroomisaun</option>
+</select><br/>
+Eelarve
+<input type="number" name="price" min="0" step="50"/><br/>
+Lisainfo
+<textarea name="description" rows="10" cols="50"></textarea><br/>
+Plaan
+<input type="file" name="big" /><br/>
+<input type="submit" value="Saada" name="button" />
+</form>

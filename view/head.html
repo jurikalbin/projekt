@@ -3,19 +3,22 @@
 <head>
 <meta charset="utf-8" />
 <title>Saunaleht</title>
-<script type="text/javascript" src="../script.js"></script>
-<link rel="stylesheet" type="text/css" href="../style.css" />
+<script type="text/javascript" src="script.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 <div id="wrap">
-<div id="header"><a href=""><img id="logo" src="../small/saun.png" alt="logo"/></a></div>
+<div><a href="?"><img id="logo" src="small/saun.png" alt="logo"/></a></div>
 	<ul id="menu">
-		<li><a href="">Esileht</a></li>
-		<li><a href="">Portfolio</a></li>
-		<li><a href="">Vaata tellimusi</a></li>
-		<li><a href="">Küsi pakkumist!</a></li>
-		<li><a href="">Asukoht</a></li>
-		<li><a href="">Logi välja</a></li>
-		<li><a href="">Logi sisse</a></li>
+		<li><a href="?">Esileht</a></li>
+		<li><a href="?page=kontakt">Asukoht</a></li>
+		<li><a href="?page=portfolio">Portfolio</a></li>
+		<?php if(isset($_SESSION['username'])):?>
+			<li><a href="?page=tellimus">Vaata tellimusi</a></li>
+			<li><a href="?page=logout">Logi välja</a></li>
+		<?php else: ?>
+			<li><a href="?page=regvorm">Küsi pakkumist!</a></li>
+			<li><a href="?page=login">Logi sisse</a></li>
+		<?php endif; ?>
 	</ul>
 <div id="content">
