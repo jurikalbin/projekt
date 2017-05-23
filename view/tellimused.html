@@ -1,11 +1,27 @@
 <p>Siin lehel on võimalik vaadata esitatud tellimusi</p>
 <table border="1">
 <tr>
-  <td>Nimi</td>
-  <td>Telefon</td> 
-  <td>Saun</td>
-  <td>Eelarve</td>
-  <td>Lisainfo</td>
-  <td>Lae eskiis</td>
+  <th>Nimi</th>
+  <th>Telefon</th> 
+  <th>Saun</th>
+  <th>Eelarve</th>
+  <th>Lisainfo</th>
+  <th>Lae eskiis</th>
 </tr>
+<?php
+	if (isset($tellimused)){
+		foreach($tellimused as $tellimus){
+?>
+
+<tr>
+  <td><?php echo htmlspecialchars($tellimus['nimi']); ?></td>
+  <td><?php echo htmlspecialchars($tellimus['telefon']); ?></td> 
+  <td><?php echo htmlspecialchars($tellimus['saun']); ?></td>
+  <td><?php echo htmlspecialchars($tellimus['eelarve']); ?></td>
+  <td><?php echo htmlspecialchars($tellimus['info']); ?></td>
+  <td><a href="<?php echo htmlspecialchars($tellimus['eskiis']); ?>">Eskiis</a></td>
+</tr>
+
+<?php }				
+} ?>
 </table>

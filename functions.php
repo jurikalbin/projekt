@@ -16,7 +16,7 @@ function login(){
 	global $connection;
 	global $errors;
 	
-	if (!empty($_SESSION['user'])){
+	if (!empty($_SESSION['username'])){
 		header("Location: ?");	
 	}
 	if ($_SERVER['REQUEST_METHOD']=='GET'){
@@ -49,9 +49,6 @@ function portfolio(){
         include_once("view/pildivorm.html");
 }
 function pakkumine(){
-		if (empty($_SESSION['username'])){
-			header("Location: ?page=login");
-		}
         include_once("view/pakkumine.html");
 }
 function signup(){
@@ -95,12 +92,22 @@ function kontakt(){
         include_once("view/contact.html");
 }
 function tellimus(){
+		global $connection;
 		if (empty($_SESSION['username'])){
 			header("Location: ?page=login");
-		}	
+		}
+		$tellimused=array();
+		$sql="SELECT * FROM 12103979_tellimused";
+		$result = mysqli_query($connection, $sql);
+		while ($rida = mysqli_fetch_assoc($result)){
+				$tellimused[]=$rida;
+		}
         include_once("view/tellimused.html");
 }
 function logout(){
+		if (empty($_SESSION['username'])){
+			header("Location: ?page=login");
+		}
 		$_SESSION=array();
         session_destroy();
 		header("Location: ?");
