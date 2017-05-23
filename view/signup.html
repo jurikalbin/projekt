@@ -1,9 +1,21 @@
 <div id="login">
 	<form action="?page=signup" method="POST" >
-		<input type="text" name="username" placeholder="kasutajanimi"/><br/>
-		<input type="password" name="passwd" placeholder="parool"/><br/>
-		<input type="password" name="passwd2" placeholder="parool uuesti"/><br/>
+		<table>
+		<tr>
+		<td><label for="username">Kasutajanimi: </label></td>
+		<td><input type="text" name="username" placeholder="kasutajanimi"/><br/></td>
+		</tr>
+		<tr>
+		<td><label for="passwd">Parool: </label></td>
+		<td><input type="password" name="passwd" placeholder="parool"/><br/></td>
+		</tr>
+		<tr>
+		<td><label for="passwd">Korda parooli: </label></td>
+		<td><input type="password" name="passwd2" placeholder="parool uuesti"/><br/></td>
+		</tr>
+		</table>
 		<input type="submit" value="Registreeri"/>
+		
 	</form>
 	<?php if (isset($errors)):?>
 		<?php foreach($errors as $error):?>

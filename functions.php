@@ -1,4 +1,7 @@
 <?php
+ini_set("display_errors", 1);
+$errors=array();
+
 function connect_db(){
 	global $connection;
 	$host="localhost";
@@ -10,37 +13,21 @@ function connect_db(){
 }
 
 function login(){
-        include_once("view/login.html");
-}
-function portfolio(){
-        include_once("view/pildivorm.html");
-}
-function regvorm(){
-        include_once("view/regvorm.html");
-}
-function signup(){
-        include_once("view/signup.html");
-}
-function kontakt(){
-        include_once("view/contact.html");
-}
-function tellimus(){
-        include_once("view/tellimused.html");
-}
-function logout(){
-        session_destroy();
-		header("Location: ?");
-}
-function auth(){
 	global $connection;
+	global $errors;
 	
-	if ($_SERVER['REQUEST_METHOD']=='GET'){
-		include_once('views/login.html');
+	if (!empty($_SESSION['user'])){
+		header("Location: ?");	
 	}
+	if ($_SERVER['REQUEST_METHOD']=='GET'){
+		include_once('view/login.html');
+	}
+	
 	if (empty($_POST['username']) || empty($_POST['passwd'])){
 		$errors[]= "Kasutajanimi/Parool puudu!";
-		include_once('views/login.html');
+		include_once('view/login.html');
 	}
+		
 	if ($_SERVER['REQUEST_METHOD']=="POST"){
 		if (isset($_POST['username']) && isset($_POST['passwd'])){
 			$kasutaja =  mysqli_real_escape_string($connection,htmlspecialchars($_POST['username']));
@@ -52,9 +39,31 @@ function auth(){
 				header("Location: ?page=tellimus");
 			}else{
 				$errors[]= "Kasutajat ei eksisteeri!";
-				include_once('views/login.html');
+				include_once('view/login.html');
 			}
 		}
 	}
 }
+
+function portfolio(){
+        include_once("view/pildivorm.html");
+}
+function pakkumine(){
+        include_once("view/pakkumine.html");
+}
+function signup(){
+        include_once("view/signup.html");
+}
+function kontakt(){
+        include_once("view/contact.html");
+}
+function tellimus(){
+        include_once("view/tellimused.html");
+}
+function logout(){
+		$_SESSION=array();
+        session_destroy();
+		header("Location: ?");
+}
+
 ?>

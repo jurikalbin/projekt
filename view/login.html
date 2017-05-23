@@ -1,7 +1,15 @@
 <div id="login">
 	<form action="?page=login" method="POST" >
-		<input type="text" name="username" placeholder="kasutajanimi"/><br/>
-		<input type="password" name="passwd" placeholder="parool"/><br/>
+	<table>
+		<tr>
+		<td><label for="username">Kasutajanimi: </label></td>
+		<td><input type="text" id="username" name="username" placeholder="kasutajanimi"/><br/></td>
+		</tr>
+		<tr>
+		<td><label for="passwd">Parool: </label></td>
+		<td><input type="password" id="passwd" name="passwd" placeholder="parool"/><br/></td>
+		</tr>
+	</table>
 		<input type="submit" value="Logi sisse"/>
 	</form>
 	<?php if (isset($errors)):?>
@@ -9,5 +17,5 @@
 			<div style="color:red;"><?php echo htmlspecialchars($error); ?></div>
 		<?php endforeach;?>
 	<?php endif;?>
-</div>
+</div></br>
 <a href="?page=signup">Registreeru</a>

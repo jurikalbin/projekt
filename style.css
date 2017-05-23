@@ -1,24 +1,51 @@
-body{
-background-color: #FFFFCC;
+body {
+	background-color: #FFFFCC;
 }
 
-#logo{
-width: 100%
+#logo {
+	width: 100%
 }
 
-#wrap{
-background-color: #dbb870;
-width: 900px;
-margin-left: auto;
-margin-right: auto;
+#wrap {
+	background-color: #dbb870;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-#content{
-padding: 10px 20px;
-min-height: 200px;
+#content {
+	padding: 10px 20px;
+	min-height: 200px;
 }
 
-#footer{
-text-align: center;
-font-size: 12px;
+#footer {
+	text-align: center;
+	font-size: 12px;
+}
+#reg label {
+	width:70px; 
+	height: 25px; 
+	display:inline-block;
+}
+
+#login {
+
+}
+
+#menu a{
+	float: left;
+	width: 20%;
+	background-color: #D1FF75;
+	text-align: center;
+	padding: 7px 0;
+}
+	
+#menu a:hover{
+	background-color: #CCCC66;	
+	font-weight: bold;
+}
+	
+#map_canvas {
+	width: 500px;
+	height: 400px;
 }

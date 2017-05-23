@@ -2,6 +2,10 @@
 require_once("functions.php");
 session_start();
 connect_db();
+$page="pealeht";
+if (isset($_GET['page']) && $_GET['page']!=""){
+  	$page=htmlspecialchars($_GET['page']);
+}
 
 	$pildid=array(
 	  array("big"=>"big/soome_saun.jpg", "small"=>"small/soome_saun.jpg", "alt"=>"Soome saun"),
@@ -11,42 +15,34 @@ connect_db();
 	  array("big"=>"big/aurusaun.jpg", "small"=>"small/aurusaun.jpg", "alt"=>"Aurusaun"),
 	  array("big"=>"big/aroomisaun.jpg", "small"=>"small/aroomisaun.jpg", "alt"=>"Aroomisaun"),
 	);
-$page="pealeht";
-if (isset($_GET['page']) && $_GET['page']!=""){
-  	$page=htmlspecialchars($_GET['page']);
-}
+
 
 include_once("view/head.html");
-
 switch($page){
-	  case "login":
+	case "login":
 		login();
-	  break;
-	  case "portfolio":
+	break;
+	case "portfolio":
 		portfolio();
-	  break;
-	  case "regvorm":
-		regvorm();
-	  break;
-	  case "signup":
+	break;
+	case "pakkumine":
+		pakkumine();
+	break;
+	case "signup":
 		signup();
-	  break;
-	  case "kontakt":
+	break;
+	case "kontakt":
 		kontakt();
-	  break;
-	  case "tellimus":
+	break;
+	case "tellimus":
 		tellimus();
-	  break;
-	  case "login":
-	  	login();
-	  break;
-	  case "logout":
+	break;
+	case "logout":
 		logout();
-	  break;
-	  default:
-	  include_once("view/pealeht.html");
-	  break;
+	break;
+	default:
+		include_once("view/pealeht.html");
+	break;
 }
-
 include_once("view/foot.html");
 ?>

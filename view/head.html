@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8" />
-<title>Saunaleht</title>
-<script type="text/javascript" src="script.js"></script>
-<link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-<body>
-<div id="wrap">
-<div><a href="?"><img id="logo" src="small/saun.png" alt="logo"/></a></div>
-	<ul id="menu">
-		<li><a href="?">Esileht</a></li>
-		<li><a href="?page=kontakt">Asukoht</a></li>
-		<li><a href="?page=portfolio">Portfolio</a></li>
-		<?php if(isset($_SESSION['username'])):?>
-			<li><a href="?page=tellimus">Vaata tellimusi</a></li>
-			<li><a href="?page=logout">Logi välja</a></li>
-		<?php else: ?>
-			<li><a href="?page=regvorm">Küsi pakkumist!</a></li>
-			<li><a href="?page=login">Logi sisse</a></li>
-		<?php endif; ?>
-	</ul>
-<div id="content">
+	<head>
+		<meta charset="utf-8" />
+		<title>Saunaleht</title>
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="google.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div id="wrap">
+		<a href="?"><img id="logo" src="small/saun.png" alt="logo"/></a>
+		
+		<div id="menu">
+			<a href="?">Esileht</a>
+			<a href="?page=kontakt">Asukoht</a>
+			<a href="?page=portfolio">Portfolio</a>
+			<?php if(isset($_SESSION['username'])):?>
+				<a href="?page=tellimus">Vaata tellimusi</a>
+				<a href="?page=logout">Logi välja</a>
+			<?php else: ?>
+				<a href="?page=pakkumine">Küsi pakkumist!</a>
+				<a href="?page=login">Logi sisse</a>
+			<?php endif; ?>
+		</div>
+		<div id="content">
