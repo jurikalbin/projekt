@@ -49,44 +49,84 @@ function portfolio(){
         include_once("view/pildivorm.html");
 }
 function pakkumine(){
-        include_once("view/pakkumine.html");
+    global $connection;
+	global $errors;
+		if ($_SERVER['REQUEST_METHOD']=='GET'){
+			include_once('view/pakkumine.html');
+		}
+		if ($_SERVER['REQUEST_METHOD']=='POST'){
+			if (empty($_POST["name"])){
+				$errors[]= "Nimi puudu!";
+			}
+			if (empty($_POST["phone"])){
+				$errors[]= "Telefoni number puudu!";
+			}
+			if (empty($_POST["saun"])){
+				$errors[]= "Sauna valik tegemata!";
+			}
+			if (empty($_POST["price"])){
+				$errors[]= "Eelarve sisestamata!";
+			}
+			if (empty($_POST["description"])){
+				$errors[]= "Info sisestamata!";
+			}
+			
+			$nimi =  mysqli_real_escape_string($connection,htmlspecialchars($_POST['name']));
+			$telefon = mysqli_real_escape_string($connection,htmlspecialchars($_POST['phone']));
+			$saun = mysqli_real_escape_string($connection,htmlspecialchars($_POST['saun']));
+			$eelarve = mysqli_real_escape_string($connection,htmlspecialchars($_POST['price']));
+			$info = mysqli_real_escape_string($connection,htmlspecialchars($_POST['description']));
+			
+			if (empty($errors)){
+				$sql= "INSERT INTO 12103979_tellimused (nimi,telefon,saun,eelarve,info) VALUES ('$nimi','$telefon','$saun','$eelarve','$info')";
+				$result=mysqli_query($connection, $sql);
+				if (mysqli_affected_rows($connection) > 0){
+					header("Location: ?");
+				}else{
+					$errors[]= "Ei suutnud infot baasi lisada!";
+					print_r($sql);
+					include_once('view/pakkumine.html');
+				}
+			}
+		}
+       include_once("view/pakkumine.html");
 }
 function signup(){
-        global $connection;
-		global $errors;
-			if (empty($_SESSION['username'])) {
-				header("Location: ?page=login");	
+    global $connection;
+	global $errors;
+		if (empty($_SESSION['username'])) {
+			header("Location: ?page=login");	
+		}
+		if ($_SERVER['REQUEST_METHOD']=='GET'){
+			include_once('view/signup.html');
+		}
+		if ($_SERVER['REQUEST_METHOD']=='POST'){
+			if (empty($_POST["username"])){
+				$errors[]= "Kasutajanimi puudu!";
 			}
-			if ($_SERVER['REQUEST_METHOD']=='GET'){
-				include_once('view/signup.html');
+			if (empty($_POST["passwd"])){
+				$errors[]= "Parool puudu!";
 			}
-			if ($_SERVER['REQUEST_METHOD']=='POST'){
-				if (empty($_POST["username"])){
-					$errors[]= "Kasutajanimi puudu!";
-				}
-				if (empty($_POST["passwd"])){
-					$errors[]= "Parool puudu!";
-				}
-				if (($_POST["passwd"])!= ($_POST["passwd2"])){
-					$errors[]= "Paroolid ei klapi!";
-				}
-				
-				$kasutaja =  mysqli_real_escape_string($connection,htmlspecialchars($_POST['username']));
-				$parool = mysqli_real_escape_string($connection,htmlspecialchars($_POST['passwd']));
+			if (($_POST["passwd"])!= ($_POST["passwd2"])){
+				$errors[]= "Paroolid ei klapi!";
+			}
+			
+			$kasutaja =  mysqli_real_escape_string($connection,htmlspecialchars($_POST['username']));
+			$parool = mysqli_real_escape_string($connection,htmlspecialchars($_POST['passwd']));
 
-				if (empty($errors)){
-					$sql= "INSERT INTO 12103979_kylastajad (username, passw) VALUES ('$kasutaja', SHA1('$parool'))";
-					$result=mysqli_query($connection, $sql);
-					if (mysqli_affected_rows($connection) > 0){
-						header("Location: ?");
-					}else{
-						$errors[]= "Ei suutnud kasutajat tekitada!";
-						print_r($sql);
-						include_once('view/signup.html');
-					}
+			if (empty($errors)){
+				$sql= "INSERT INTO 12103979_kylastajad (username, passw) VALUES ('$kasutaja', SHA1('$parool'))";
+				$result=mysqli_query($connection, $sql);
+				if (mysqli_affected_rows($connection) > 0){
+					header("Location: ?");
+				}else{
+					$errors[]= "Ei suutnud kasutajat tekitada!";
+					print_r($sql);
+					include_once('view/signup.html');
 				}
 			}
-	include_once('view/signup.html');
+		}
+include_once('view/signup.html');
 }
 function kontakt(){
         include_once("view/contact.html");

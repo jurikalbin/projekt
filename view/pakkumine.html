@@ -1,5 +1,5 @@
 <div id="reg">
-<form action="regvorm.html" method="POST" >
+<form action="?page=pakkumine" method="POST" >
 	<label>Nimi</label>
 	<input type="text" name="name" /><br/>
 	
@@ -8,12 +8,12 @@
 	
 	<label>Saun</label>
 	<select name="saun">
-		<option value="1">Soome saun</option>
-		<option value="2">Vene saun</option>
-		<option value="3">Türgi saun</option>
-		<option value="4">Suitsusaun</option>
-		<option value="5">Aurusaun</option>
-		<option value="6">Aroomisaun</option>
+		<option value="Soome saun">Soome saun</option>
+		<option value="Vene saun">Vene saun</option>
+		<option value="Türgi saun">Türgi saun</option>
+		<option value="Suitsusaun">Suitsusaun</option>
+		<option value="Aurusaun">Aurusaun</option>
+		<option value="Aroomisaun">Aroomisaun</option>
 	</select><br/>
 	
 	<label>Eelarve</label>
@@ -22,9 +22,11 @@
 	<label>Lisainfo</label>
 	<textarea name="description" rows="10" cols="50"></textarea><br/>
 	
-	<label>Plaan</label>
-	<input type="file" name="big" /><br/>
-	
 	<input type="submit" value="Saada" name="button" />
 </form>
 </div>
+<?php if (isset($errors)):?>
+	<?php foreach($errors as $error):?>
+		<div style="color:red;"><?php echo htmlspecialchars($error); ?></div>
+	<?php endforeach;?>
+<?php endif;?>
