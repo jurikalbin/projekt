@@ -49,15 +49,55 @@ function portfolio(){
         include_once("view/pildivorm.html");
 }
 function pakkumine(){
+		if (empty($_SESSION['username'])){
+			header("Location: ?page=login");
+		}
         include_once("view/pakkumine.html");
 }
 function signup(){
-        include_once("view/signup.html");
+        global $connection;
+		global $errors;
+			if (empty($_SESSION['username'])) {
+				header("Location: ?page=login");	
+			}
+			if ($_SERVER['REQUEST_METHOD']=='GET'){
+				include_once('view/signup.html');
+			}
+			if ($_SERVER['REQUEST_METHOD']=='POST'){
+				if (empty($_POST["username"])){
+					$errors[]= "Kasutajanimi puudu!";
+				}
+				if (empty($_POST["passwd"])){
+					$errors[]= "Parool puudu!";
+				}
+				if (($_POST["passwd"])!= ($_POST["passwd2"])){
+					$errors[]= "Paroolid ei klapi!";
+				}
+				
+				$kasutaja =  mysqli_real_escape_string($connection,htmlspecialchars($_POST['username']));
+				$parool = mysqli_real_escape_string($connection,htmlspecialchars($_POST['passwd']));
+
+				if (empty($errors)){
+					$sql= "INSERT INTO 12103979_kylastajad (username, passw) VALUES ('$kasutaja', SHA1('$parool'))";
+					$result=mysqli_query($connection, $sql);
+					if (mysqli_affected_rows($connection) > 0){
+						header("Location: ?");
+					}else{
+						$errors[]= "Ei suutnud kasutajat tekitada!";
+						print_r($sql);
+						include_once('view/signup.html');
+					}
+				}
+			}
+	include_once('view/signup.html');
 }
 function kontakt(){
         include_once("view/contact.html");
 }
 function tellimus(){
+		if (empty($_SESSION['username'])){
+			header("Location: ?page=login");
+		}	
         include_once("view/tellimused.html");
 }
 function logout(){
