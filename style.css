@@ -14,8 +14,8 @@ body {
 }
 
 #content {
-	padding: 10px 20px;
-	min-height: 200px;
+	padding: 40px 20px;
+	min-height: 900px;
 }
 
 #footer {
@@ -48,4 +48,8 @@ body {
 #map_canvas {
 	width: 500px;
 	height: 400px;
+}
+
+#gallery img {
+	border: 2px solid;
 }

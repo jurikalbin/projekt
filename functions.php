@@ -51,24 +51,39 @@ function portfolio(){
 function pakkumine(){
     global $connection;
 	global $errors;
+		$name="";
+		$phone="";
+		$saun="Soome saun";
+		$price="";
+		$description="";
 		if ($_SERVER['REQUEST_METHOD']=='GET'){
 			include_once('view/pakkumine.html');
 		}
 		if ($_SERVER['REQUEST_METHOD']=='POST'){
 			if (empty($_POST["name"])){
 				$errors[]= "Nimi puudu!";
+			}else{
+				$name =  htmlspecialchars($_POST['name']);
 			}
 			if (empty($_POST["phone"])){
 				$errors[]= "Telefoni number puudu!";
+			}else{
+				$phone =  htmlspecialchars($_POST['phone']);
 			}
 			if (empty($_POST["saun"])){
 				$errors[]= "Sauna valik tegemata!";
+			}else{
+				$saun =  htmlspecialchars($_POST['saun']);
 			}
 			if (empty($_POST["price"])){
 				$errors[]= "Eelarve sisestamata!";
+			}else{
+				$price =  htmlspecialchars($_POST['price']);
 			}
 			if (empty($_POST["description"])){
 				$errors[]= "Info sisestamata!";
+			}else{
+				$description =  htmlspecialchars($_POST['description']);
 			}
 			
 			$nimi =  mysqli_real_escape_string($connection,htmlspecialchars($_POST['name']));
@@ -84,7 +99,6 @@ function pakkumine(){
 					header("Location: ?");
 				}else{
 					$errors[]= "Ei suutnud infot baasi lisada!";
-					print_r($sql);
 					include_once('view/pakkumine.html');
 				}
 			}
@@ -121,7 +135,6 @@ function signup(){
 					header("Location: ?");
 				}else{
 					$errors[]= "Ei suutnud kasutajat tekitada!";
-					print_r($sql);
 					include_once('view/signup.html');
 				}
 			}
