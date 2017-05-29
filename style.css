@@ -28,8 +28,9 @@ body {
 	display:inline-block;
 }
 
-#login {
-
+iframe { 
+	border:0px solid white; 
+	overflow:hidden;
 }
 
 #menu a{

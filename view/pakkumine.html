@@ -1,10 +1,10 @@
 <div id="reg">
 <form action="?page=pakkumine" method="POST" >
 	<label>Nimi</label>
-	<input type="text" name="name" value=<?php echo $name; ?> ><br/>
+	<input type="text" name="name" value="<?php echo $name; ?>" ><br/>
 	
 	<label>Telefon</label>
-	<input type="tel" name="phone" value=<?php echo $phone; ?>><br/>
+	<input type="tel" name="phone" value="<?php echo $phone; ?>"><br/>
 	
 	<label>Saun</label>
 	<select name="saun" >
@@ -17,7 +17,7 @@
 	</select><br/>
 	
 	<label>Eelarve</label>
-	<input type="number" name="price" min="0" step="50" value=<?php echo $price; ?>><br/>
+	<input type="number" name="price" min="0" step="50" value="<?php echo $price; ?>"><br/>
 	
 	<label>Lisainfo</label>
 	<textarea name="description" rows="10" cols="50" ><?php echo $description; ?></textarea><br/>
